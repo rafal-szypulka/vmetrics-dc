@@ -25,11 +25,13 @@ services:
       - 4242:4242
     volumes:
       - vmdata:/storage
+      - ./vm-relabel.yml:/vm-relabel.yml
     command:
       - '--storageDataPath=/storage'
       - '--graphiteListenAddr=:2003'
       - '--opentsdbListenAddr=:4242'
       - '--httpListenAddr=:8428'
+      - '--relabelConfig=/vm-relabel.yml'
     networks:
       - vm_net
     restart: always
